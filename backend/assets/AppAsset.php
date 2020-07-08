@@ -18,7 +18,8 @@ class AppAsset extends AssetBundle
         'ubold/assets/css/icons.css',
         'ubold/assets/css/pages.css',
         'ubold/assets/css/responsive.css',
-        'ubold/assets/plugins/morris/morris.css',
+        //'ubold/assets/plugins/morris/morris.css',
+        'ubold/assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css',
     ];
     public $js = [
         'ubold/assets/js/modernizr.min.js',
@@ -34,9 +35,9 @@ class AppAsset extends AssetBundle
         'ubold/assets/js/jquery.scrollTo.min.js',
         'ubold/assets/js/jquery.core.js',
         'ubold/assets/js/jquery.app.js',
-        'ubold/assets/plugins/morris/morris.min.js',
-        'ubold/assets/plugins/raphael/raphael-min.js',
-        'ubold/assets/pages/jquery.dashboard_2.js',
+        //'ubold/assets/plugins/morris/morris.min.js',
+        //'ubold/assets/plugins/raphael/raphael-min.js',
+        //'ubold/assets/pages/jquery.dashboard_2.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -7,15 +7,15 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Satuan Pelayanan';
+$this->title = 'Data Kmp';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="unit-index">
+<div class="data-kmp-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Unit Pelayanan', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Data Kmp', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 
@@ -24,13 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            // 'id_unit',
-            'username',
-            'nama_unit',
-            'unit',
-            'kabupaten',
-            //'email:email',
-            //'alamat',
+            //'id_kmp',
+            'nama_kmp',
+            'unit.nama_unit',
+            'trayek.nama_trayek',
+            'GRT',
+            //'kapasitas_penumpang',
+            //'kapasitas_kendaraan',
+            //'keterangan',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

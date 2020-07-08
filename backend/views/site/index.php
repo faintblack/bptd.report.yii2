@@ -125,7 +125,7 @@ $this->title = 'My Yii Application';
             <h4 class="text-dark header-title m-t-0">Data Keberangkatan Kendaraan Terminal Tahun 2018</h4>
 
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="text-center">
                         <ul class="list-inline chart-detail-list">
                             <li>
