@@ -157,6 +157,6 @@ class Pengguna extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getUnits()
     {
-        return $this->hasMany(Unit::className(), ['username' => 'username']);
+        return $this->hasOne(Unit::className(), ['username' => 'username']);
     }
 }

@@ -3,6 +3,13 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+$level_akses = Yii::$app->user->identity->attributes['level_akses'];
+$unit = null;
+if ($level_akses == 'unit') {
+    $unit = Yii::$app->user->identity->units->attributes['unit'];
+}
+// print_r($unit);exit();
+
 ?>
 <!--- Divider -->
 <div id="sidebar-menu" style="padding-top: 0px;">
@@ -11,18 +18,41 @@ use yii\helpers\Url;
             <a href="<?= Url::to(['/']) ?>" class="waves-effect"><i class="ti-home"></i> <span> Beranda </span></a>
         </li>
 
-        <li class="has_sub">
-            <a href="javascript:void(0);" class="waves-effect"><i class="glyphicon glyphicon-th-large"></i> <span> Data Master </span> <span class="menu-arrow"></span> </a>
-            <ul class="list-unstyled">
-                <li><a href="<?= Url::to(['data-daerah/index']) ?>">Data Daerah</a></li>
-                <li><a href="<?= Url::to(['data-jenis-muatan/index']) ?>">Data Jenis Muatan</a></li>
-                <li><a href="<?= Url::to(['data-trayek/index']) ?>">Data Trayek SDP</a></li>
-                <li><a href="<?= Url::to(['pengguna/index']) ?>">Pengguna</a></li>
-            </ul>
-        </li>
+        <?php
+        if ($unit == 'SDP' || $level_akses == 'admin') {
+        ?>
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect"><i class="glyphicon glyphicon-th-large"></i> <span> Data Master </span> <span class="menu-arrow"></span> </a>
+                <ul class="list-unstyled">
+                    <?php
+                    if ($level_akses == 'admin') {
+                    ?>
+                    <li><a href="<?= Url::to(['data-daerah/index']) ?>">Data Daerah</a></li>
+                    <li><a href="<?= Url::to(['data-jenis-muatan/index']) ?>">Data Jenis Muatan</a></li>
+                    <li><a href="<?= Url::to(['data-trayek/index']) ?>">Data Trayek SDP</a></li>
+                    <li><a href="<?= Url::to(['pengguna/index']) ?>">Pengguna</a></li>
+                    <?php
+                    } else if($unit == 'SDP') {
+                    ?>
+                    <li><a href="<?= Url::to(['data-trayek/index']) ?>">Data Trayek SDP</a></li>
+                    <?php
+                    }
+                    ?>
+                    
+                </ul>
+            </li>
+        <?php
+        }
+        ?>
 
         <!-- SATUAN PELAYANAN -->
+        <?php
+        if ($level_akses == 'admin') {
+        ?>
         <li><a href="<?= Url::to(['unit/index']) ?>" class="waves-effect"><i class="md-directions-bus"></i> <span> Satuan Pelayanan </span> </a></li>
+        <?php
+        }
+        ?>
 
         <!-- DATA KMP -->
         <li><a href="<?= Url::to(['data-kmp/index']) ?>" class="waves-effect"><i class="md-directions-ferry"></i> <span> Data KMP </span> </a></li>

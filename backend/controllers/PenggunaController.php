@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Pengguna;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -19,7 +20,19 @@ class PenggunaController extends Controller
      */
     public function behaviors()
     {
+        $level_akses = Yii::$app->user->identity->attributes['level_akses'];
+
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'view', 'update', 'delete', 'find-model'],
+                        'allow' => $level_akses == 'admin' ? true : false,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

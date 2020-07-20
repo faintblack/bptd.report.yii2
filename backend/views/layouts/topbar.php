@@ -29,7 +29,7 @@ use yii\helpers\Url;
                         <a href="#" id="btn-fullscreen" class="waves-effect waves-light" title="Fullscreen"><i class="icon-size-fullscreen"></i></a>
                     </li>
                     <li class="hidden-xs">
-                        <a href="<?= Url::to(['site/logout']) ?>" id="btn-logout" class="waves-effect waves-light" title="Logout"><i class="ti-light-bulb"></i></a>
+                        <a href="<?= Url::to(['site/logout']) ?>" id="btn-logout" data-method="post" class="waves-effect waves-light" title="Logout"><i class="ti-light-bulb"></i></a>
                     </li>
                 </ul>
             </div>

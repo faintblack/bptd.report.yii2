@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\DataTrayek;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -19,7 +20,23 @@ class DataTrayekController extends Controller
      */
     public function behaviors()
     {
+        $level_akses = Yii::$app->user->identity->attributes['level_akses'];
+        $unit = null;
+        if ($level_akses == 'unit') {
+            $unit = Yii::$app->user->identity->units->attributes['unit'];
+        }
+
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'view', 'update', 'delete', 'find-model'],
+                        'allow' => ($level_akses == 'admin' || $unit == 'SDP') ? true : false,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

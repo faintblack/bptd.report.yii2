@@ -5,7 +5,9 @@
 use fedemotta\datatables\DataTables;
 use yii\grid\GridView;
 
-$this->title = 'My Yii Application';
+$this->title = 'Beranda';
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <!-- <div class="site-index">
 
@@ -77,11 +79,18 @@ $this->title = 'My Yii Application';
 <div class="row">
     <div class="col-sm-12">
 
-        <h4 class="page-title" style="margin-top: 0px;">Beranda</h4>
-        <ol class="breadcrumb" style="font-size: 12px;">
-            <li class="active">
-                Beranda
-            </li>
+        <h4 class="page-title" style="margin-top: 0px;"><?= $this->title; ?></h4>
+        <ol class="breadcrumb" style="font-size: 12px; margin-bottom:10px">
+            <?php
+            foreach ($this->params['breadcrumbs'] as $key => $value) {
+            ?>
+                <li>
+                    <?= $value; ?>
+                </li>
+            <?php
+            }
+            ?>
+
         </ol>
     </div>
 </div>
