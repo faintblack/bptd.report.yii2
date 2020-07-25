@@ -36,7 +36,7 @@ class SdpDetailReportController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => SdpDetailReport::find()->orderBy('report.tanggal', 'DESC'),
+            'query' => SdpDetailReport::find()->orderBy('tanggal DESC'),
         ]);
 
         return $this->render('index', [

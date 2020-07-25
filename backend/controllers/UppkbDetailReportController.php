@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\UppkbReport;
+use backend\models\UppkbDetailReport;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UppkbReportController implements the CRUD actions for UppkbReport model.
+ * UppkbDetailReportController implements the CRUD actions for UppkbDetailReport model.
  */
-class UppkbReportController extends Controller
+class UppkbDetailReportController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,13 +30,13 @@ class UppkbReportController extends Controller
     }
 
     /**
-     * Lists all UppkbReport models.
+     * Lists all UppkbDetailReport models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => UppkbReport::find(),
+            'query' => UppkbDetailReport::find(),
         ]);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class UppkbReportController extends Controller
     }
 
     /**
-     * Displays a single UppkbReport model.
+     * Displays a single UppkbDetailReport model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class UppkbReportController extends Controller
     }
 
     /**
-     * Creates a new UppkbReport model.
+     * Creates a new UppkbDetailReport model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new UppkbReport();
+        $model = new UppkbDetailReport();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_report]);
+            return $this->redirect(['view', 'id' => $model->id_detail_report]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class UppkbReportController extends Controller
     }
 
     /**
-     * Updates an existing UppkbReport model.
+     * Updates an existing UppkbDetailReport model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class UppkbReportController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_report]);
+            return $this->redirect(['view', 'id' => $model->id_detail_report]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class UppkbReportController extends Controller
     }
 
     /**
-     * Deletes an existing UppkbReport model.
+     * Deletes an existing UppkbDetailReport model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class UppkbReportController extends Controller
     }
 
     /**
-     * Finds the UppkbReport model based on its primary key value.
+     * Finds the UppkbDetailReport model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return UppkbReport the loaded model
+     * @return UppkbDetailReport the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UppkbReport::findOne($id)) !== null) {
+        if (($model = UppkbDetailReport::findOne($id)) !== null) {
             return $model;
         }
 

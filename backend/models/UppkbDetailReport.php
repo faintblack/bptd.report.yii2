@@ -8,7 +8,8 @@ use Yii;
  * This is the model class for table "uppkb_detail_report".
  *
  * @property int $id_detail_report
- * @property int $id_report
+ * @property int $id_unit
+ * @property string $no_ktp_supir
  * @property int $id_jenis_muatan
  * @property string $nomor_kendaraan
  * @property string $jenis_kendaraan
@@ -19,11 +20,13 @@ use Yii;
  * @property int $kelebihan_muatan
  * @property int $asal
  * @property int $tujuan
+ * @property string $tanggal
  *
- * @property UppkbReport $report
  * @property DataJenisMuatan $jenisMuatan
- * @property DataDaerah $asal0
- * @property DataDaerah $tujuan0
+ * @property DataDaerah $asal
+ * @property DataDaerah $tujuan
+ * @property UppkbPengemudi $noKtpSupir
+ * @property Unit $unit
  */
 class UppkbDetailReport extends \yii\db\ActiveRecord
 {
@@ -41,14 +44,17 @@ class UppkbDetailReport extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_report', 'id_jenis_muatan', 'nomor_kendaraan', 'jenis_kendaraan', 'berat_kendaraan', 'jbi', 'hasil_penimbangan', 'berat_muatan', 'kelebihan_muatan', 'asal', 'tujuan'], 'required'],
-            [['id_report', 'id_jenis_muatan', 'berat_kendaraan', 'jbi', 'hasil_penimbangan', 'berat_muatan', 'kelebihan_muatan', 'asal', 'tujuan'], 'integer'],
+            [['id_unit', 'no_ktp_supir', 'id_jenis_muatan', 'nomor_kendaraan', 'jenis_kendaraan', 'berat_kendaraan', 'jbi', 'hasil_penimbangan', 'berat_muatan', 'kelebihan_muatan', 'asal', 'tujuan', 'tanggal'], 'required'],
+            [['id_unit', 'id_jenis_muatan', 'berat_kendaraan', 'jbi', 'hasil_penimbangan', 'berat_muatan', 'kelebihan_muatan', 'asal', 'tujuan'], 'integer'],
+            [['tanggal'], 'safe'],
+            [['no_ktp_supir'], 'string', 'max' => 16],
             [['nomor_kendaraan'], 'string', 'max' => 10],
             [['jenis_kendaraan'], 'string', 'max' => 4],
-            [['id_report'], 'exist', 'skipOnError' => true, 'targetClass' => UppkbReport::className(), 'targetAttribute' => ['id_report' => 'id_report']],
-            [['id_jenis_muatan'], 'exist', 'skipOnError' => true, 'targetClass' => DataJenisMuatan::className(), 'targetAttribute' => ['id_jenis_muatan' => 'id_jenis_muatan']],
-            [['asal'], 'exist', 'skipOnError' => true, 'targetClass' => DataDaerah::className(), 'targetAttribute' => ['asal' => 'id_daerah']],
-            [['tujuan'], 'exist', 'skipOnError' => true, 'targetClass' => DataDaerah::className(), 'targetAttribute' => ['tujuan' => 'id_daerah']],
+            [['id_jenis_muatan'], 'exist', 'skipOnError' => true, 'targetClass' => DataJenisMuatan::class, 'targetAttribute' => ['id_jenis_muatan' => 'id_jenis_muatan']],
+            [['asal'], 'exist', 'skipOnError' => true, 'targetClass' => DataDaerah::class, 'targetAttribute' => ['asal' => 'id_daerah']],
+            [['tujuan'], 'exist', 'skipOnError' => true, 'targetClass' => DataDaerah::class, 'targetAttribute' => ['tujuan' => 'id_daerah']],
+            [['no_ktp_supir'], 'exist', 'skipOnError' => true, 'targetClass' => UppkbPengemudi::class, 'targetAttribute' => ['no_ktp_supir' => 'no_ktp']],
+            [['id_unit'], 'exist', 'skipOnError' => true, 'targetClass' => Unit::class, 'targetAttribute' => ['id_unit' => 'id_unit']],
         ];
     }
 
@@ -59,7 +65,8 @@ class UppkbDetailReport extends \yii\db\ActiveRecord
     {
         return [
             'id_detail_report' => 'Id Detail Report',
-            'id_report' => 'Id Report',
+            'id_unit' => 'Id Unit',
+            'no_ktp_supir' => 'No Ktp Supir',
             'id_jenis_muatan' => 'Id Jenis Muatan',
             'nomor_kendaraan' => 'Nomor Kendaraan',
             'jenis_kendaraan' => 'Jenis Kendaraan',
@@ -70,17 +77,8 @@ class UppkbDetailReport extends \yii\db\ActiveRecord
             'kelebihan_muatan' => 'Kelebihan Muatan',
             'asal' => 'Asal',
             'tujuan' => 'Tujuan',
+            'tanggal' => 'Tanggal',
         ];
-    }
-
-    /**
-     * Gets query for [[Report]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getReport()
-    {
-        return $this->hasOne(UppkbReport::className(), ['id_report' => 'id_report']);
     }
 
     /**
@@ -90,26 +88,46 @@ class UppkbDetailReport extends \yii\db\ActiveRecord
      */
     public function getJenisMuatan()
     {
-        return $this->hasOne(DataJenisMuatan::className(), ['id_jenis_muatan' => 'id_jenis_muatan']);
+        return $this->hasOne(DataJenisMuatan::class, ['id_jenis_muatan' => 'id_jenis_muatan']);
     }
 
     /**
-     * Gets query for [[Asal0]].
+     * Gets query for [[Asal]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getAsal0()
+    public function getAsal()
     {
-        return $this->hasOne(DataDaerah::className(), ['id_daerah' => 'asal']);
+        return $this->hasOne(DataDaerah::class, ['id_daerah' => 'asal']);
     }
 
     /**
-     * Gets query for [[Tujuan0]].
+     * Gets query for [[Tujuan]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTujuan0()
+    public function getTujuan()
     {
-        return $this->hasOne(DataDaerah::className(), ['id_daerah' => 'tujuan']);
+        return $this->hasOne(DataDaerah::class, ['id_daerah' => 'tujuan']);
+    }
+
+    /**
+     * Gets query for [[NoKtpSupir]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNoKtpSupir()
+    {
+        return $this->hasOne(UppkbPengemudi::class, ['no_ktp' => 'no_ktp_supir']);
+    }
+
+    /**
+     * Gets query for [[Unit]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUnit()
+    {
+        return $this->hasOne(Unit::class, ['id_unit' => 'id_unit']);
     }
 }

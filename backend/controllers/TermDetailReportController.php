@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\SdpReport;
+use backend\models\TermDetailReport;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SdpReportController implements the CRUD actions for SdpReport model.
+ * TermDetailReportController implements the CRUD actions for TermDetailReport model.
  */
-class SdpReportController extends Controller
+class TermDetailReportController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,13 +30,13 @@ class SdpReportController extends Controller
     }
 
     /**
-     * Lists all SdpReport models.
+     * Lists all TermDetailReport models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => SdpReport::find(),
+            'query' => TermDetailReport::find(),
         ]);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class SdpReportController extends Controller
     }
 
     /**
-     * Displays a single SdpReport model.
+     * Displays a single TermDetailReport model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class SdpReportController extends Controller
     }
 
     /**
-     * Creates a new SdpReport model.
+     * Creates a new TermDetailReport model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new SdpReport();
+        $model = new TermDetailReport();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_report]);
+            return $this->redirect(['view', 'id' => $model->id_detail_report]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class SdpReportController extends Controller
     }
 
     /**
-     * Updates an existing SdpReport model.
+     * Updates an existing TermDetailReport model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class SdpReportController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_report]);
+            return $this->redirect(['view', 'id' => $model->id_detail_report]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class SdpReportController extends Controller
     }
 
     /**
-     * Deletes an existing SdpReport model.
+     * Deletes an existing TermDetailReport model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class SdpReportController extends Controller
     }
 
     /**
-     * Finds the SdpReport model based on its primary key value.
+     * Finds the TermDetailReport model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return SdpReport the loaded model
+     * @return TermDetailReport the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = SdpReport::findOne($id)) !== null) {
+        if (($model = TermDetailReport::findOne($id)) !== null) {
             return $model;
         }
 

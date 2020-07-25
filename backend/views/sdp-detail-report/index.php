@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = 'SDP';
             <p>
                 <?= Html::a('Create ' . $this->title, ['create'], ['class' => 'btn btn-success']) ?>
             </p>
-            <?= DataTables::widget([
+            <!-- <?= DataTables::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     [
@@ -105,7 +105,7 @@ $this->params['breadcrumbs'][] = 'SDP';
                         'class' => 'yii\grid\ActionColumn'
                     ],
                 ],
-            ]); ?>
+            ]); ?> -->
 
         </div>
     </div>

@@ -8,17 +8,15 @@ use Yii;
  * This is the model class for table "sdp_detail_report".
  *
  * @property int $id_detail_report
- * @property int $id_report
  * @property int $id_kmp
  * @property int $id_muatan_penumpang
+ * @property int $id_muatan_kendaraan
  * @property int $frekuensi_trip
- * @property float $load_factor_kendaraan
- * @property float $load_factor_penumpang
+ * @property string $tanggal
  *
- * @property SdpReport $report
  * @property DataKmp $kmp
  * @property SdpMuatanPenumpang $muatanPenumpang
- * @property SdpMuatanKendaraan[] $muatanKendaraans
+ * @property SdpMuatanKendaraan $muatanKendaraan
  */
 class SdpDetailReport extends \yii\db\ActiveRecord
 {
@@ -36,12 +34,12 @@ class SdpDetailReport extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_report', 'id_kmp', 'id_muatan_penumpang', 'frekuensi_trip', 'load_factor_kendaraan', 'load_factor_penumpang'], 'required'],
-            [['id_report', 'id_kmp', 'id_muatan_penumpang', 'frekuensi_trip'], 'integer'],
-            [['load_factor_kendaraan', 'load_factor_penumpang'], 'number'],
-            [['id_report'], 'exist', 'skipOnError' => true, 'targetClass' => SdpReport::className(), 'targetAttribute' => ['id_report' => 'id_report']],
-            [['id_kmp'], 'exist', 'skipOnError' => true, 'targetClass' => DataKmp::className(), 'targetAttribute' => ['id_kmp' => 'id_kmp']],
-            [['id_muatan_penumpang'], 'exist', 'skipOnError' => true, 'targetClass' => SdpMuatanPenumpang::className(), 'targetAttribute' => ['id_muatan_penumpang' => 'id_muatan_penumpang']],
+            [['id_kmp', 'id_muatan_penumpang', 'id_muatan_kendaraan', 'frekuensi_trip', 'tanggal'], 'required'],
+            [['id_kmp', 'id_muatan_penumpang', 'id_muatan_kendaraan', 'frekuensi_trip'], 'integer'],
+            [['tanggal'], 'safe'],
+            [['id_kmp'], 'exist', 'skipOnError' => true, 'targetClass' => DataKmp::class, 'targetAttribute' => ['id_kmp' => 'id_kmp']],
+            [['id_muatan_penumpang'], 'exist', 'skipOnError' => true, 'targetClass' => SdpMuatanPenumpang::class, 'targetAttribute' => ['id_muatan_penumpang' => 'id_muatan_penumpang']],
+            [['id_muatan_kendaraan'], 'exist', 'skipOnError' => true, 'targetClass' => SdpMuatanKendaraan::class, 'targetAttribute' => ['id_muatan_kendaraan' => 'id_muatan_kendaraan']],
         ];
     }
 
@@ -52,23 +50,12 @@ class SdpDetailReport extends \yii\db\ActiveRecord
     {
         return [
             'id_detail_report' => 'Id Detail Report',
-            'id_report' => 'Id Report',
             'id_kmp' => 'Id Kmp',
             'id_muatan_penumpang' => 'Id Muatan Penumpang',
+            'id_muatan_kendaraan' => 'Id Muatan Kendaraan',
             'frekuensi_trip' => 'Frekuensi Trip',
-            'load_factor_kendaraan' => 'Load Factor Kendaraan',
-            'load_factor_penumpang' => 'Load Factor Penumpang',
+            'tanggal' => 'Tanggal',
         ];
-    }
-
-    /**
-     * Gets query for [[Report]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getReport()
-    {
-        return $this->hasOne(SdpReport::className(), ['id_report' => 'id_report']);
     }
 
     /**
@@ -78,7 +65,7 @@ class SdpDetailReport extends \yii\db\ActiveRecord
      */
     public function getKmp()
     {
-        return $this->hasOne(DataKmp::className(), ['id_kmp' => 'id_kmp']);
+        return $this->hasOne(DataKmp::class, ['id_kmp' => 'id_kmp']);
     }
 
     /**
@@ -88,16 +75,16 @@ class SdpDetailReport extends \yii\db\ActiveRecord
      */
     public function getMuatanPenumpang()
     {
-        return $this->hasOne(SdpMuatanPenumpang::className(), ['id_muatan_penumpang' => 'id_muatan_penumpang']);
+        return $this->hasOne(SdpMuatanPenumpang::class, ['id_muatan_penumpang' => 'id_muatan_penumpang']);
     }
 
     /**
-     * Gets query for [[SdpMuatanKendaraans]].
+     * Gets query for [[MuatanKendaraan]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMuatanKendaraans()
+    public function getMuatanKendaraan()
     {
-        return $this->hasMany(SdpMuatanKendaraan::className(), ['id_detail_report' => 'id_detail_report']);
+        return $this->hasOne(SdpMuatanKendaraan::class, ['id_muatan_kendaraan' => 'id_muatan_kendaraan']);
     }
 }

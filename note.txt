@@ -1,4 +1,5 @@
 1. pindahkan no ktp dri tabel uppkb report ke uppkb detail report
 2. hapus id_detail_report dari tabel sdp muatan kendaran, tambahkan field id_muatan_kendaraan pd tabel sdp_detail_report
 3. hapus tabel sdp_report dan pindahkan field tanggal ke tabel sdp_detail_report
-4. 
+4. load factor pnp dan kdrn di tabel sdp_detail_report hapus aja, krna tinggal buat persentase dari jumlah dgn kapasitas kmp (kapal)
+5. 
