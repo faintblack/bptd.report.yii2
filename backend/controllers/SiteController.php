@@ -68,6 +68,7 @@ class SiteController extends Controller
         //$model_pengguna = new Pengguna();
         $data_pengguna = Pengguna::findIdentity('mahardika');
         $data_kmp = DataKmp::find()->all();
+        print_r($data_kmp[0]['nama_kmp']);exit();
         // $data_unit = Unit::find()->all();
         $data_unit = new ActiveDataProvider([
             'query' => Unit::find(),

@@ -65,9 +65,9 @@ if ($level_akses == 'unit') {
                 <li class="has_sub">
                     <a href="javascript:void(0);" id="menu_laporan" class="waves-effect"><span>Data Laporan </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
-                        <li id="li-laporan_terminal"><a href="<?php echo 'admin/laporan/terminal'; ?>"><span>Terminal</span></a></li>
-                        <li id="li-laporan_uppkb"><a href="<?php echo 'admin/laporan/uppkb'; ?>"><span>UPPKB</span></a></li>
-                        <li id="li-laporan_sdp"><a href="<?php echo 'admin/laporan/sdp'; ?>"><span>SDP</span></a></li>
+                        <li id="li-laporan_terminal"><a href="<?= Url::to(['term-report/index']) ?>"><span>Terminal</span></a></li>
+                        <li id="li-laporan_uppkb"><a href="<?= Url::to(['uppkb-report/index']) ?>"><span>UPPKB</span></a></li>
+                        <li id="li-laporan_sdp"><a href="<?= Url::to(['sdp-detail-report/index']) ?>"><span>SDP</span></a></li>
                     </ul>
                 </li>
                 <!-- CETAK LAPORAN -->

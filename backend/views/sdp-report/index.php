@@ -7,8 +7,10 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Data Kmp';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Sdp Reports';
+$this->params['breadcrumbs'][] = 'Laporan';
+$this->params['breadcrumbs'][] = 'Data Laporan';
+$this->params['breadcrumbs'][] = 'SDP';
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -44,33 +46,31 @@ $this->params['breadcrumbs'][] = $this->title;
                         'contentOptions' => ['style' => 'text-align:center;'],
                         'class' => 'yii\grid\SerialColumn'
                     ],
+
                     [
-                        'attribute' => 'Nama Kapal',
+                        'attribute' => 'Tanggal',
                         'headerOptions' => ['style' => 'text-align:center;'],
                         'contentOptions' => ['style' => 'text-align:center;'],
-                        'value' => 'nama_kmp'
+                        'value' => 'tanggal'
                     ],
                     [
-                        'attribute' => 'Nama Unit',
+                        'attribute' => 'Nama Perusahaan',
                         'headerOptions' => ['style' => 'text-align:center;'],
                         'contentOptions' => ['style' => 'text-align:center;'],
                         'value' => 'unit.nama_unit'
                     ],
                     [
-                        'attribute' => 'Nama Trayek',
+                        'attribute' => 'KMP',
                         'headerOptions' => ['style' => 'text-align:center;'],
                         'contentOptions' => ['style' => 'text-align:center;'],
-                        'value' => 'trayek.nama_trayek'
+                        'value' => 'sdpDetailReports.kmp.nama_kmp'
                     ],
-                    [
-                        'attribute' => 'GRT',
-                        'headerOptions' => ['style' => 'text-align:center;'],
-                        'contentOptions' => ['style' => 'text-align:center;'],
-                        'value' => 'GRT'
-                    ],
-                    //'kapasitas_penumpang',
-                    //'kapasitas_kendaraan',
-                    //'keterangan',
+                    // 'kmp',
+                    // 'trayek',
+                    // 'frekuensi trip',
+                    // 'jml kendaraan',
+                    // 'jml pnp',
+
                     [
                         'header' => 'Aksi',
                         'headerOptions' => ['style' => 'text-align:center;'],
@@ -83,28 +83,23 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
-<!-- <div class="data-kmp-index">
+<!-- <div class="sdp-report-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Data Kmp', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Sdp Report', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 
-    <?= DataTables::widget([
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id_kmp',
-            'nama_kmp',
-            'unit.nama_unit',
-            'trayek.nama_trayek',
-            'GRT',
-            //'kapasitas_penumpang',
-            //'kapasitas_kendaraan',
-            //'keterangan',
+            'id_report',
+            'id_unit',
+            'tanggal',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

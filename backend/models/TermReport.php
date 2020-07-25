@@ -56,7 +56,7 @@ class TermReport extends \yii\db\ActiveRecord
      */
     public function getTermDetailReports()
     {
-        return $this->hasMany(TermDetailReport::className(), ['id_report' => 'id_report']);
+        return $this->hasOne(TermDetailReport::className(), ['id_report' => 'id_report']);
     }
 
     /**

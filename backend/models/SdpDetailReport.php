@@ -18,7 +18,7 @@ use Yii;
  * @property SdpReport $report
  * @property DataKmp $kmp
  * @property SdpMuatanPenumpang $muatanPenumpang
- * @property SdpMuatanKendaraan[] $sdpMuatanKendaraans
+ * @property SdpMuatanKendaraan[] $muatanKendaraans
  */
 class SdpDetailReport extends \yii\db\ActiveRecord
 {
@@ -96,7 +96,7 @@ class SdpDetailReport extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSdpMuatanKendaraans()
+    public function getMuatanKendaraans()
     {
         return $this->hasMany(SdpMuatanKendaraan::className(), ['id_detail_report' => 'id_detail_report']);
     }

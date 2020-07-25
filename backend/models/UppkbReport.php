@@ -61,7 +61,7 @@ class UppkbReport extends \yii\db\ActiveRecord
      */
     public function getUppkbDetailReports()
     {
-        return $this->hasMany(UppkbDetailReport::className(), ['id_report' => 'id_report']);
+        return $this->hasOne(UppkbDetailReport::className(), ['id_report' => 'id_report']);
     }
 
     /**

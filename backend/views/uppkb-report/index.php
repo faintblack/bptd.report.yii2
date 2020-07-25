@@ -7,8 +7,10 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Data Kmp';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Uppkb Reports';
+$this->params['breadcrumbs'][] = 'Laporan';
+$this->params['breadcrumbs'][] = 'Data Laporan';
+$this->params['breadcrumbs'][] = 'UPPKB';
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -45,32 +47,39 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'yii\grid\SerialColumn'
                     ],
                     [
-                        'attribute' => 'Nama Kapal',
+                        'attribute' => 'Tanggal',
                         'headerOptions' => ['style' => 'text-align:center;'],
                         'contentOptions' => ['style' => 'text-align:center;'],
-                        'value' => 'nama_kmp'
+                        'value' => 'tanggal'
                     ],
                     [
-                        'attribute' => 'Nama Unit',
+                        'attribute' => 'Nama UPPKB',
                         'headerOptions' => ['style' => 'text-align:center;'],
                         'contentOptions' => ['style' => 'text-align:center;'],
                         'value' => 'unit.nama_unit'
                     ],
                     [
-                        'attribute' => 'Nama Trayek',
+                        'attribute' => 'No. Kendaraan',
                         'headerOptions' => ['style' => 'text-align:center;'],
                         'contentOptions' => ['style' => 'text-align:center;'],
-                        'value' => 'trayek.nama_trayek'
+                        'value' => 'uppkbDetailReports.nomor_kendaraan'
                     ],
                     [
-                        'attribute' => 'GRT',
+                        'attribute' => 'Jenis Kendaraan',
                         'headerOptions' => ['style' => 'text-align:center;'],
                         'contentOptions' => ['style' => 'text-align:center;'],
-                        'value' => 'GRT'
+                        'value' => 'uppkbDetailReports.jenis_kendaraan'
                     ],
-                    //'kapasitas_penumpang',
-                    //'kapasitas_kendaraan',
-                    //'keterangan',
+                    // 'id_report',
+                    // 'id_unit',
+                    // 'no_ktp',
+                    [
+                        'attribute' => 'No. KTP',
+                        'headerOptions' => ['style' => 'text-align:center;'],
+                        'contentOptions' => ['style' => 'text-align:center;'],
+                        'value' => 'no_ktp'
+                    ],
+
                     [
                         'header' => 'Aksi',
                         'headerOptions' => ['style' => 'text-align:center;'],
@@ -83,32 +92,3 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
-<!-- <div class="data-kmp-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Data Kmp', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-
-    <?= DataTables::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //'id_kmp',
-            'nama_kmp',
-            'unit.nama_unit',
-            'trayek.nama_trayek',
-            'GRT',
-            //'kapasitas_penumpang',
-            //'kapasitas_kendaraan',
-            //'keterangan',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
-
-</div> -->
