@@ -43,10 +43,10 @@ class TermPenumpang extends \yii\db\ActiveRecord
     {
         return [
             'id_penumpang' => 'Id Penumpang',
-            'penumpang_datang' => 'Penumpang Datang',
-            'penumpang_turun' => 'Penumpang Turun',
-            'penumpang_naik' => 'Penumpang Naik',
-            'penumpang_berangkat' => 'Penumpang Berangkat',
+            'penumpang_datang' => 'Jumlah Penumpang Datang',
+            'penumpang_turun' => 'Jumlah Penumpang Turun',
+            'penumpang_naik' => 'Jumlah Penumpang Naik',
+            'penumpang_berangkat' => 'Jumlah Penumpang Berangkat',
         ];
     }
 

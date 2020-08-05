@@ -13,7 +13,7 @@ use yii\helpers\BaseUrl;
 use yii\helpers\Url;
 
 AppAsset::register($this);
-?>
+?> 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html>
@@ -24,7 +24,7 @@ AppAsset::register($this);
     <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
     <meta name="author" content="Coderthemes">
 
-    <link rel="shortcut icon" href="<?= Url::base('') ?>/ubold/assets/images/favicon_1.ico">
+    <link rel="shortcut icon" href="<?= Url::base() ?>/ubold/assets/images/favicon_1.ico">
 
     <title>Balai Pengelola Transportasi Darat Wil. IV Riau - Kepri</title>
 

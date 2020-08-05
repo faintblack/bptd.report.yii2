@@ -41,8 +41,8 @@ class TermKendaraan extends \yii\db\ActiveRecord
     {
         return [
             'id_kendaraan' => 'Id Kendaraan',
-            'kendaraan_masuk' => 'Kendaraan Masuk',
-            'kendaraan_keluar' => 'Kendaraan Keluar',
+            'kendaraan_masuk' => 'Jumlah Kendaraan Masuk',
+            'kendaraan_keluar' => 'Jumlah Kendaraan Keluar',
         ];
     }
 

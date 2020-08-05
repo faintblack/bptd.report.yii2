@@ -53,9 +53,9 @@ class TermDetailReport extends \yii\db\ActiveRecord
     {
         return [
             'id_detail_report' => 'Id Detail Report',
-            'id_unit' => 'Id Unit',
-            'id_kendaraan' => 'Id Kendaraan',
-            'id_penumpang' => 'Id Penumpang',
+            'id_unit' => 'Unit',
+            'id_kendaraan' => 'Jumlah Kendaraan',
+            'id_penumpang' => 'Jumlah Penumpang',
             'jenis_tujuan' => 'Jenis Tujuan',
             'tipe_perjalanan' => 'Tipe Perjalanan',
             'tanggal' => 'Tanggal',

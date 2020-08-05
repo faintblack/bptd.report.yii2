@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Url;
 
 /**
  * Site controller
@@ -73,6 +74,7 @@ class SiteController extends Controller
         $data_unit = new ActiveDataProvider([
             'query' => Unit::find(),
         ]);
+        // print_r(Url::base());exit();
         // print_r($data_pengguna->units[0]->dataKmps);exit();
         // print_r($data_kmp);exit();
         return $this->render('index', [

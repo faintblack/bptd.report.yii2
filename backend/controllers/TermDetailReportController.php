@@ -4,10 +4,14 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\TermDetailReport;
+use backend\models\TermKendaraan;
+use backend\models\TermPenumpang;
+use backend\models\Unit;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * TermDetailReportController implements the CRUD actions for TermDetailReport model.
@@ -21,7 +25,7 @@ class TermDetailReportController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -65,13 +69,49 @@ class TermDetailReportController extends Controller
     public function actionCreate()
     {
         $model = new TermDetailReport();
+        $model2 = new TermKendaraan();
+        $model3 = new TermPenumpang();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
+            $data = Yii::$app->request->post();
+
+            $model->id_unit = $data['TermDetailReport']['id_unit'];
+            $model->jenis_tujuan = $data['TermDetailReport']['jenis_tujuan'];
+            $model->tipe_perjalanan = $data['TermDetailReport']['tipe_perjalanan'];
+            $model->tanggal = $data['TermDetailReport']['tanggal'];
+
+            $model2->kendaraan_masuk = $data['TermKendaraan']['kendaraan_masuk'];
+            $model2->kendaraan_keluar = $data['TermKendaraan']['kendaraan_keluar'];
+            $model2->save();
+
+            // Get last id term_kendaraan
+            $model->id_kendaraan = \Yii::$app->db->getLastInsertId();
+
+            $model3->penumpang_datang = $data['TermPenumpang']['penumpang_datang'];
+            $model3->penumpang_turun = $data['TermPenumpang']['penumpang_turun'];
+            $model3->penumpang_naik = $data['TermPenumpang']['penumpang_naik'];
+            $model3->penumpang_berangkat = $data['TermPenumpang']['penumpang_berangkat'];
+            $model3->save();
+
+            // Get last id term_kendaraan
+            $model->id_penumpang = \Yii::$app->db->getLastInsertId();
+
+            //Save data termdetailreport
+            $model->save();
+            
             return $this->redirect(['view', 'id' => $model->id_detail_report]);
         }
 
+        $data_unit = Unit::find()->where(['unit' => 'Terminal'])->all();
+        $data_unit = ArrayHelper::map($data_unit, 'id_unit', 'nama_unit');
+
         return $this->render('create', [
             'model' => $model,
+            'model2' => $model2,
+            'model3' => $model3,
+            'data' => [
+                'data_unit' => $data_unit
+            ]
         ]);
     }
 
