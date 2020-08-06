@@ -44,9 +44,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'tanggal')->widget(DatePicker::class, [
         'pluginOptions' => [
             'autoclose' => true,
-            'format' => 'yyyy-mm-dd',
+            'format' => 'yyyy-m-dd',
             'todayHighlight' => true,
-            'startDate' => date("yyyy-mm-dd H:i:s"),
+            'startDate' => date("yyyy-m-dd H:i:s"),
         ]
     ]) ?>
 

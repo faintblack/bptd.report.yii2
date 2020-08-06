@@ -84,9 +84,14 @@ AppAsset::register($this);
     ?>
 
 
-    <script>
+    <script type="text/javascript">
         var resizefunc = [];
     </script>
+    <?php $this->registerJs("
+        $(document).ready(function () {
+            $('#datatable').dataTable();
+        });
+    "); ?>
 
 </body>
 <?php $this->endBody() ?>

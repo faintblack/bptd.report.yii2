@@ -99,7 +99,7 @@ class TermDetailReportController extends Controller
             //Save data termdetailreport
             $model->save();
             
-            return $this->redirect(['view', 'id' => $model->id_detail_report]);
+            return $this->redirect(['index']);
         }
 
         $data_unit = Unit::find()->where(['unit' => 'Terminal'])->all();

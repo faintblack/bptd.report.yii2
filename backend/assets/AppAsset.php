@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
         'ubold/assets/css/responsive.css',
         //'ubold/assets/plugins/morris/morris.css',
         'ubold/assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css',
+        'ubold/assets/plugins/datatables/jquery.dataTables.min.css'
     ];
     public $js = [
         'ubold/assets/js/modernizr.min.js',
@@ -35,6 +36,9 @@ class AppAsset extends AssetBundle
         'ubold/assets/js/jquery.scrollTo.min.js',
         'ubold/assets/js/jquery.core.js',
         'ubold/assets/js/jquery.app.js',
+        'ubold/assets/plugins/datatables/jquery.dataTables.min.js',
+        'ubold/assets/plugins/datatables/dataTables.bootstrap.js',
+        'ubold/assets/pages/dataTables.init.js',
         //'ubold/assets/plugins/morris/morris.min.js',
         //'ubold/assets/plugins/raphael/raphael-min.js',
         //'ubold/assets/pages/jquery.dashboard_2.js',

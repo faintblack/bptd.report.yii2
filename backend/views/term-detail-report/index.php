@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = 'SDP';
             </p>
             <?= DataTables::widget([
                 'dataProvider' => $dataProvider,
+                // 'id' => '',
                 'columns' => [
                     [
                         'header' => 'No.',
@@ -54,7 +55,22 @@ $this->params['breadcrumbs'][] = 'SDP';
                         'value' => function ($model){
                             // Buat konversi tanggal menjadi nama bulan plain text (Ex : 1 Agustus 2020)
                             $tanggal = $model->tanggal;
-                            return $tanggal;
+                            $bulan = substr($tanggal,5,2);
+                            $months = [
+                                '01' => 'Januari',
+                                '02' => 'Februari',
+                                '03' => 'Maret',
+                                '04' => 'April',
+                                '05' => 'Mei',
+                                '06' => 'Juni',
+                                '07' => 'Juli',
+                                '08' => 'Agustus',
+                                '09' => 'September',
+                                '10' => 'Oktober',
+                                '11' => 'November',
+                                '12' => 'Desember',
+                            ];
+                            return substr($tanggal,8,2). ' ' .$months[$bulan]. ' ' .substr($tanggal, 0,4);
                         }
                     ],
                     [
@@ -68,6 +84,12 @@ $this->params['breadcrumbs'][] = 'SDP';
                         'headerOptions' => ['style' => 'text-align:center;'],
                         'contentOptions' => ['style' => 'text-align:center;'],
                         'value' => 'jenis_tujuan'
+                    ],
+                    [
+                        'attribute' => 'Tipe Perjalanan',
+                        'headerOptions' => ['style' => 'text-align:center;'],
+                        'contentOptions' => ['style' => 'text-align:center;'],
+                        'value' => 'tipe_perjalanan'
                     ],
                     [
                         'attribute' => 'Kendaraan Datang',
@@ -93,15 +115,13 @@ $this->params['breadcrumbs'][] = 'SDP';
                         'contentOptions' => ['style' => 'text-align:center;'],
                         'value' => 'penumpang.penumpang_berangkat'
                     ],
-                    [
-                        'header' => 'Aksi',
-                        'headerOptions' => ['style' => 'text-align:center;'],
-                        'contentOptions' => ['style' => 'text-align:center;'],
-                        'class' => 'yii\grid\ActionColumn'
-                    ],
+                ],
+                'clientOptions' => [
+                    "info"=>false,
+                    "responsive"=>true, 
+                    'scrollX' => true,
                 ],
             ]); ?>
-
         </div>
     </div>
 </div>
