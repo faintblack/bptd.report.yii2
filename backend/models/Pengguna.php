@@ -18,6 +18,7 @@ use yii\web\IdentityInterface;
  */
 class Pengguna extends \yii\db\ActiveRecord implements IdentityInterface
 {
+
     /**
      * {@inheritdoc}
      */
@@ -34,7 +35,7 @@ class Pengguna extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             [['username', 'password', 'nama', 'level_akses'], 'required'],
             [['username'], 'string', 'max' => 12],
-            [['password', 'nama'], 'string', 'max' => 50],
+            [['password', 'nama'], 'string', 'max' => 80],
             [['level_akses'], 'string', 'max' => 13],
             [['username'], 'unique'],
         ];
@@ -129,7 +130,7 @@ class Pengguna extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function validatePassword($password)
     {
-        return Yii::$app->security->validatePassword($password, $this->password_hash);
+        return Yii::$app->security->validatePassword($password, $this->password);
     }
 
     /**
@@ -139,7 +140,7 @@ class Pengguna extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setPassword($password)
     {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+        $this->password = Yii::$app->security->generatePasswordHash($password);
     }
 
     /**
@@ -157,6 +158,6 @@ class Pengguna extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getUnits()
     {
-        return $this->hasOne(Unit::className(), ['username' => 'username']);
+        return $this->hasOne(Unit::class, ['username' => 'username']);
     }
 }

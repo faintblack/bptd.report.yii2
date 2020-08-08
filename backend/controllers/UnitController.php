@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Pengguna;
 use Yii;
 use backend\models\Unit;
 use yii\data\ActiveDataProvider;
@@ -78,13 +79,34 @@ class UnitController extends Controller
     public function actionCreate()
     {
         $model = new Unit();
+        $model2 = new Pengguna();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_unit]);
+        if ($model->load(Yii::$app->request->post())) {
+            $data_pengguna = Yii::$app->request->post('Pengguna');
+
+            $model2->username = $data_pengguna['username'];
+            $model2->setPassword($data_pengguna['password']);
+            $model2->nama = $data_pengguna['nama'];
+            $model2->level_akses = 'unit';
+            // print_r($model2);exit();
+            $model2->save();
+
+            $data_unit = Yii::$app->request->post('Unit');
+            $model->username = $model2->username;
+            $model->nama_unit = $data_unit['nama_unit'];
+            $model->unit = $data_unit['unit'];
+            $model->kabupaten = $data_unit['kabupaten'];
+            $model->email = $data_unit['email'];
+            $model->alamat = $data_unit['alamat'];
+            // print_r();exit();
+            $model->save();
+
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'model2' => $model2
         ]);
     }
 

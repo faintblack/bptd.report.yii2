@@ -12,13 +12,36 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model2, 'nama')->textInput(['maxlength' => true])->label('Nama Pengguna') ?>
+
+    <?= $form->field($model2, 'username')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model2, 'password')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'nama_unit')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'unit')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'unit')->dropDownList(
+        ['Terminal' => 'Terminal', 'SDP' => 'SDP', 'UPPKB' => 'UPPKB'],
+        ['prompt' => 'Pilih Jenis Unit']
+    ) ?>
 
-    <?= $form->field($model, 'kabupaten')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'kabupaten')->dropDownList(
+        [
+            'Pekanbaru' => 'Pekanbaru', 
+            'Dumai' => 'Dumai', 
+            'Bengkalis' => 'Bengkalis',
+            'Kampar' => 'Kampar',
+            'Taluk Kuantan' => 'Taluk Kuantan',
+            'Indragiri Hulu' => 'Indragiri Hulu',
+            'Indragiri Hilir' => 'Indragiri Hilir',
+            'Rokan Hulu' => 'Rokan Hulu',
+            'Rokan Hilir' => 'Rokan Hilir',
+            'Duri' => 'Duri',
+            'Kepulauan Meranti' => 'Kepulauan Meranti',
+            'Batam' => 'Batam',
+        ],
+        ['prompt' => 'Pilih Kabupaten / Kota']
+    )->label('Kabupaten / Kota') ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 

@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-lg-12">
         <div class="card-box">
             <h4 class="text-dark header-title m-t-0 m-b-15">Data<?= $this->title; ?></h4>
+            <!-- PENAMBAHAN PENGGUNA DILAKUKAN OTOMATIS KETIKA PENAMBAHAN SATUAN PELAYANAN -->
             <!-- <p>
                 <?= Html::a('Create ' . $this->title, ['create'], ['class' => 'btn btn-success']) ?>
             </p> -->
@@ -52,14 +53,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'contentOptions' => ['style' => 'text-align:center;'],
                         'value' => 'username'
                     ],
-                    [
-                        'attribute' => 'Password',
-                        'headerOptions' => ['style' => 'text-align:center;'],
-                        'contentOptions' => ['style'=>'text-align: center;'],
-                        'value' => function ($model){
-                            return str_repeat('*', strlen($model->password));
-                        }
-                    ],
+                    // [
+                    //     'attribute' => 'Password',
+                    //     'headerOptions' => ['style' => 'text-align:center;'],
+                    //     'contentOptions' => ['style'=>'text-align: center;'],
+                    //     'value' => function ($model){
+                    //         return str_repeat('*', strlen($model->password));
+                    //     }
+                    // ],
                     [
                         'attribute' => 'Nama',
                         'headerOptions' => ['style' => 'text-align:center;'],
