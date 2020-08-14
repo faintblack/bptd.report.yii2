@@ -75,7 +75,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'header' => 'Aksi',
                         'headerOptions' => ['style' => 'text-align:center;'],
                         'contentOptions' => ['style' => 'text-align:center;'],
-                        'class' => 'yii\grid\ActionColumn'
+                        'class' => 'yii\grid\ActionColumn', 
+                        'template' => '{view} {update}' // Delete unit dilakukan pada data master pengguna
                     ],
                 ],
             ]); ?>
