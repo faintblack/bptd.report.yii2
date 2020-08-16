@@ -79,7 +79,9 @@ class PenggunaController extends Controller
     {
         $model = new Pengguna();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->setPassword($model->password);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->username]);
         }
 
@@ -99,7 +101,9 @@ class PenggunaController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->setPassword($model->password);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->username]);
         }
 

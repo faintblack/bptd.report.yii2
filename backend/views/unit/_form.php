@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model2, 'nama')->textInput(['maxlength' => true])->label('Nama Pengguna') ?>
+    <?= $form->field($model2, 'nama')->textInput(['maxlength' => true, 'autofocus' => $model2->isNewRecord])->label('Nama Pengguna') ?>
 
-    <?= $form->field($model2, 'username')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model2, 'username')->textInput(['maxlength' => true, 'readonly' => !$model2->isNewRecord]) ?>
 
-    <?= $form->field($model2, 'password')->textInput(['maxlength' => true]) ?>
+    <?= $model2->isNewRecord ? $form->field($model2, 'password')->passwordInput(['maxlength' => true]) : '' ?>
 
     <?= $form->field($model, 'nama_unit')->textInput(['maxlength' => true]) ?>
 
@@ -27,8 +27,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'kabupaten')->dropDownList(
         [
-            'Pekanbaru' => 'Pekanbaru', 
-            'Dumai' => 'Dumai', 
+            'Pekanbaru' => 'Pekanbaru',
+            'Dumai' => 'Dumai',
             'Bengkalis' => 'Bengkalis',
             'Kampar' => 'Kampar',
             'Taluk Kuantan' => 'Taluk Kuantan',

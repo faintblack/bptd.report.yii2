@@ -30,7 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'username',
-            'password',
+            [
+                'attribute' => 'Password',
+                'value' => function ($model){
+                    return str_repeat('*', strlen($model->password));
+                }
+            ],
             'nama',
             'level_akses',
         ],

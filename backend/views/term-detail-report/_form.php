@@ -47,6 +47,9 @@ use yii\widgets\ActiveForm;
             'format' => 'yyyy-m-dd',
             'todayHighlight' => true,
             'startDate' => date("yyyy-m-dd H:i:s"),
+        ],
+        'options' => [
+            'autocomplete' => 'off'
         ]
     ]) ?>
 

@@ -120,13 +120,21 @@ class UnitController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model2 = Pengguna::findOne($model->username);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
+            $data = Yii::$app->request->post();
+            $model->save();
+
+            $model2->nama = $data['Pengguna']['nama'];
+            $model2->save();
+            
             return $this->redirect(['view', 'id' => $model->id_unit]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'model2' => $model2
         ]);
     }
 
